@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-$morse_code = {
+MORSE_CODE = {
   'A' => '.-',
   'B' => '-...',
   'C' => '-.-.',
@@ -35,18 +36,20 @@ $morse_code = {
   '6' => '-....',
   '7' => '--...',
   '8' => '---..',
-  '9' => '----.',
-}
+  '9' => '----.'
+}.freeze
+
 def decode_char(character)
-  return $morse_code[character]
+  MORSE_CODE[character]
 end
 
 def decode_word(text)
-    decode_dict = $morse_code.invert
-    word = ''
-    letters = text.split(' ')
-    letters.each do |letter| 
-        word += decode_dict[letter]
-    end
-    return word
+  decode_dict = MORSE_CODE.invert
+  word = ''
+  text.split(' ').each do |letter|
+    word += decode_dict[letter]
+  end
+  word
 end
+
+puts decode_word('--. --')
